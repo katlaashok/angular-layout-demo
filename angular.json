@@ -1,0 +1,142 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "term-loans": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/term-loans",
+      "sourceRoot": "projects/term-loans/src",
+      "prefix": "fid",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/term-loans",
+            "index": "projects/term-loans/src/index.html",
+            "main": "projects/term-loans/src/main.ts",
+            "polyfills": "projects/term-loans/src/polyfills.ts",
+            "tsConfig": "projects/term-loans/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/term-loans/src/favicon.ico",
+              "projects/term-loans/src/assets"
+            ],
+            "styles": [
+              "projects/term-loans/src/styles.scss",
+              "projects/term-loans/src/assets/css/icon-set/style.css",
+              "projects/term-loans/src/assets/css/theme.css",
+              "projects/term-loans/src/assets/css/hs-mega-menu.min.css"
+            ],
+            "scripts": [
+              "projects/term-loans/src/assets/js/jquery.min.js",
+              "projects/term-loans/src/assets/js/bootstrap.min.js",
+              "projects/term-loans/src/assets/js/hs-mega-menu.min.js",
+              "projects/term-loans/src/assets/js/theme.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "jquery"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/term-loans/src/environments/environment.ts",
+                  "with": "projects/term-loans/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "term-loans:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "term-loans:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "term-loans:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/term-loans/src/test.ts",
+            "polyfills": "projects/term-loans/src/polyfills.ts",
+            "tsConfig": "projects/term-loans/tsconfig.spec.json",
+            "karmaConfig": "projects/term-loans/karma.conf.js",
+            "assets": [
+              "projects/term-loans/src/favicon.ico",
+              "projects/term-loans/src/assets"
+            ],
+            "styles": [
+              "projects/term-loans/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/term-loans/tsconfig.app.json",
+              "projects/term-loans/tsconfig.spec.json",
+              "projects/term-loans/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/term-loans/e2e/protractor.conf.js",
+            "devServerTarget": "term-loans:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "term-loans:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": false
+  },
+  "defaultProject": "term-loans"
+}
